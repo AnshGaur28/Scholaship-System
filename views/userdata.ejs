@@ -1,0 +1,38 @@
+<%- include('./layouts/header') %>
+
+<h1> Students List </h1>
+    <div style="display : flex" class="forms">
+        <form  action="/admin/user"  method="get" >
+            <input type="text" name="search" id="search" placeholder="Search using SID.." >
+            <button  type="submit">Search</button>
+        </form>
+        <form  action="/admin/filter"  method="get">
+            <input type="text" name="branch" id="branch" placeholder="filter by branch" >
+            <button  type="submit">Search</button>
+        </form>
+    </div>
+    <table class="table">
+        <thead>
+            <th>ID</th>
+            <th>email</th>
+            <th>role</th>
+            <th>CGPA</th>
+            <th>Branch</th>
+        </thead>
+        <tbody>
+            <pre><% allusers.forEach(user => { %>
+                <% if (user.role==='Student') { %>
+                    <tr>
+                        <td><a href="/admin/user/<%= user.id %>"><%= user.SID %></a></td>
+                        <td><%=  user.email  %></td>
+                        <td><%= user.role    %></td>
+                        <td><%= user.CGPA %></td>
+                        <td><%= user.Branch %></td>
+                    </tr>
+                <% } %>
+            <% }) %> %></pre>
+        </tbody>
+    </table>
+
+
+<%- include('./layouts/footer') %>
